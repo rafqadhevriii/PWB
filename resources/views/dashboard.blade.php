@@ -1,98 +1,120 @@
 <x-layoutAdmin>
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    @if (Auth::user()->role === 'admin')
+        <!-- Dashboard Admin -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h3>Dashboard Admin</h3>
+                        <p class="text-muted">Selamat datang, {{ auth()->user()->name }}!</p>
+                    </div>
+                </div>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
+                <!-- Statistik -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $totalAnggota }}</h3>
+                                <p>Total Anggota</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <a href="{{ route('dataAnggota') }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
 
-                <p>New Orders</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ $totalBuku }}</h3>
+                                <p>Total Buku</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <a href="{{ route('dataBuku') }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ $totalPeminjaman }}</h3>
+                                <p>Sedang Dipinjam</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <a href="{{ route('dataPeminjaman') }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-primary">
+                            <div class="inner">
+                                <h3>{{ $totalPengembalian }}</h3>
+                                <p>Dikembalikan Hari Ini</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <a href="{{ route('dataPengembalian') }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+        </section>
+    @else
+        <!-- Dashboard User -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h3>Dashboard Anggota</h3>
+                        <p class="text-muted">Halo, {{ auth()->user()->name }}!</p>
+                    </div>
+                </div>
 
-                <p>Bounce Rate</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
+                <div class="row">
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $bukuDipinjam }}</h3>
+                                <p>Buku Dipinjam</p>
+                            </div>
+                            <div class="icon"><i class="fas fa-book-reader"></i></div>
+                            <a href="{{ route('riwayatPeminjaman') }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
 
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ $belumDikembalikan }}</h3>
+                                <p>Perlu Dikembalikan</p>
+                            </div>
+                            <div class="icon"><i class="fas fa-clock"></i></div>
+                            <a href="{{ route('riwayatPeminjaman') }}" class="small-box-footer">Lihat detail <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
 
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    {{-- <div class="col-lg-4 col-12">
+                    <div class="col-lg-4 col-12">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h5>Pinjam Buku Baru</h5>
+                                <p class="text-muted">Temukan buku menarik di katalog</p>
+                                <a href="{{ route('katalogBuku') }}" class="btn btn-primary">
+                                    <i class="fas fa-book"></i> Lihat Katalog
+                                </a>
+                            </div>
+                        </div>
+                    </div> --}}
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
+        </section>
+    @endif
 </x-layoutAdmin>
