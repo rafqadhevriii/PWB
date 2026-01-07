@@ -1,7 +1,7 @@
 <x-layoutAuth>
 <div class="register-box">
   <div class="register-logo">
-    <a href="#"><b>Register </b>Sistem Informasi</a>
+    <a href="#"><b>Register </b>Perpustakaan Digital</a>
   </div>
 
   <div class="card">

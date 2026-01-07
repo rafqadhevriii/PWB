@@ -1,7 +1,7 @@
 <x-layoutAuth>
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Login </b>Sistem Informasi</a>
+    <a href="#"><b>Login </b>Perpustakaan Digital</a>
   </div>
 
   <div class="card">
